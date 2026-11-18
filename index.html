@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartLiving | จัดการสัญญาเช่า</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="/"><span class="mark">SL</span> SmartLiving</a>
+    <span id="identity" class="identity"></span>
+    <button id="connect">เชื่อม MetaMask</button>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">SMARTLIVING PROPERTY <span> / </span> SEPOLIA</p>
+        <h1>จัดการสัญญาเช่า</h1>
+        <p>ดูห้องเช่า ติดตามค่าเช่า และจัดการเงินประกันจากกระเป๋าของคุณ</p>
+      </div>
+      <div class="balance"><span>ยอดเงินที่ถอนได้</span><strong id="credit">— ETH</strong><button id="withdraw"
+          disabled>ถอนเข้า Wallet</button></div>
+    </section>
+    <form id="config" class="config panel">
+      <label>Contract Address บน Sepolia<input name="address" required pattern="0x[0-9a-fA-F]{40}" placeholder="0x…"
+          spellcheck="false"></label>
+      <button>บันทึกที่อยู่</button>
+    </form>
+    <div id="notice" role="status" aria-live="polite"></div>
+    <section id="dashboard" hidden>
+      <div class="toolbar"><button id="refresh">โหลดข้อมูลล่าสุด</button></div>
+      <div class="columns">
+        <div>
+          <section class="panel">
+            <h2>ห้องเช่าของฉัน</h2>
+            <div id="properties"></div>
+            <details id="register">
+              <summary>ลงทะเบียนห้องเช่า</summary>
+              <form id="register-form" class="fields">
+                <label>ชื่อห้อง<input name="room" required maxlength="100"></label>
+                <label>ค่าเช่าต่องวด (ETH)<input name="rent" inputmode="decimal" required placeholder="0.001"></label>
+                <label>เงินประกัน (ETH)<input name="deposit" inputmode="decimal" required placeholder="0.002"></label>
+                <button>ลงทะเบียนห้อง</button>
+              </form>
+            </details>
+          </section>
+          <section class="panel">
+            <h2>สัญญาของฉัน</h2>
+            <div id="agreements"></div>
+          </section>
+        </div>
+        <section class="panel" id="detail">
+          <p>เลือกห้องหรือสัญญาเพื่อดูรายละเอียด</p>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/app.js"></script>
+</body>
+
+</html>

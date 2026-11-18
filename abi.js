@@ -1,0 +1,21 @@
+export const abi = [
+  "function arbitrator() view returns (address)",
+  "function propertyCount() view returns (uint256)",
+  "function agreementCount() view returns (uint256)",
+  "function credits(address) view returns (uint256)",
+  "function getProperty(uint256) view returns (tuple(address owner,string name,uint256 rent,uint256 deposit,uint256 currentAgreement))",
+  "function getAgreement(uint256) view returns (tuple(uint256 propertyId,address tenant,uint64 start,uint64 end,string terms,bool ownerConfirmed,bool tenantConfirmed,uint8 status,uint256 escrow,uint256 deduction,string inspection,string disputeReason,string decision))",
+  "function paymentCount(uint256) view returns (uint256)",
+  "function getPayment(uint256,uint256) view returns (tuple(uint256 amount,uint256 timestamp))",
+  "function registerProperty(string,uint256,uint256)",
+  "function createAgreement(uint256,address,uint64,uint64,string)",
+  "function confirmAgreement(uint256)",
+  "function cancelAgreement(uint256)",
+  "function depositSecurity(uint256) payable",
+  "function payRent(uint256) payable",
+  "function submitInspection(uint256,uint256,string)",
+  "function approveRefund(uint256)",
+  "function openDispute(uint256,string)",
+  "function resolveDispute(uint256,uint256,string)",
+  "function withdraw()"
+];
