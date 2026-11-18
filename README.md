@@ -52,3 +52,24 @@ npm run dev
 - ผู้รับกดถอนยอดที่จัดสรรแล้วแยกกัน ผู้ชี้ขาดเป็นบัญชีที่ตั้งไว้ตอน Deploy และเป็นคนละบัญชีกับคู่สัญญา
 - ห้องเปิดได้ทีละหนึ่งสัญญา คู่สัญญายกเลิกสัญญาที่ยังยืนยันไม่ครบและยังไม่ฝากเงินได้ สัญญาที่ยืนยันครบแต่ยังไม่ฝากต้องรอหมดอายุก่อนยกเลิก
 - ข้อมูลบน Sepolia เปิดให้สาธารณะอ่านได้ ใช้ชื่อห้องและข้อความตัวอย่างในการเดโม
+
+
+## 5. เผยแพร่ผ่าน GitHub Pages
+
+โปรเจกต์มี `.github/workflows/deploy.yml` สำหรับ build ด้วย Node.js 22 และเผยแพร่ไฟล์ `dist` เมื่อ push เข้า `main` ส่วน `vite.config.js` ตั้ง base path เป็น `/SmartLiving/`
+
+เจ้าของ repository ต้องเปิด **Settings → Pages → Build and deployment → Source → GitHub Actions** ครั้งแรก หาก workflow แจ้ง `Resource not accessible by integration` ในขั้น configure-pages แสดงว่ายังเปิด Pages ไม่สำเร็จ ให้ตั้งค่าผ่านหน้า Settings แล้วไปที่ **Actions → Deploy SmartLiving to GitHub Pages → Run workflow** หรือกด **Re-run failed jobs** ของรอบล่าสุด
+
+URL ที่คาดว่าจะใช้หลัง deployment สำเร็จ: https://imlenarr.github.io/SmartLiving/
+
+การเผยแพร่หน้าเว็บไม่ใช่การ Deploy Smart Contract ผู้ใช้ยังต้องใช้ MetaMask บน Sepolia และใส่ Contract Address ของ SmartLiving ที่ deploy ไว้แล้ว ข้อมูลที่เคยบันทึกใน localhost จะไม่ย้ายมายังโดเมน GitHub Pages โดยอัตโนมัติ ให้บันทึก Contract Address อีกครั้งบนหน้าเว็บออนไลน์
+
+### การแก้ปัญหา
+
+- หน้าเว็บแจ้งให้ติดตั้ง MetaMask: เปิดด้วยเบราว์เซอร์ที่ติดตั้งและเปิดใช้งานส่วนขยาย MetaMask
+- ไม่พบ Smart Contract: ตรวจว่าเลือก Sepolia และใช้ Contract Address ไม่ใช่ Wallet Address
+- ไม่เห็นสัญญา: ตรวจบัญชีที่เชื่อมและ Contract Address แล้วกดโหลดข้อมูลล่าสุด
+- ปุ่มตรวจห้องไม่แสดง: ต้องเป็นบัญชีเจ้าของ สัญญาฝากประกันแล้ว และเวลาในบล็อกล่าสุดต้องผ่านวันสิ้นสุด
+- อนุมัติคืนแล้วแต่ Wallet ไม่เพิ่ม: กดถอนเข้า Wallet และยืนยันธุรกรรมด้วย ผู้รับต้องมี Sepolia ETH สำหรับ gas
+- ยกเลิกรายการใน MetaMask: ธุรกรรมจะไม่ถูกส่ง กดทำรายการใหม่เมื่อพร้อม
+- ยอดเงินหลังถอนอาจต่ำกว่าการคำนวณเล็กน้อยเนื่องจากผู้ส่งธุรกรรมจ่าย gas
